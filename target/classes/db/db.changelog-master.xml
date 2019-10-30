@@ -1,0 +1,35 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="adidas" id="base-db">
+        <createTable catalogName="shoe"
+                tableName="models">
+            <column name="modelId" type="varchar(255)"/>
+            <column name="modelName" type="varchar(255)"/>
+        </createTable>
+
+         <createTable catalogName="shoe"
+                        tableName="shoes">
+                    <column name="shoeId" type="varchar(255)"/>
+                    <column name="modelId" type="varchar(255)"/>
+                    <column name="shoeColor" type="varchar(255)"/>
+                    <column name="shoeSize" type="integer"/>
+          </createTable>
+
+      <insert tableName="models">
+        <column name="modelId" value="modelA"/>
+        <column name="modelName" value="Model A name"/>
+      </insert>
+      <insert tableName="models">
+        <column name="modelId" value="modelB"/>
+        <column name="modelName" value="Model B name"/>
+      </insert>
+    </changeSet>
+
+</databaseChangeLog>
