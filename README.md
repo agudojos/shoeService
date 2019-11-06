@@ -10,5 +10,5 @@
 
 | Model Id | Model Name | 
 | :---: | :---: | 
-| modelA | Model A name | 
-| modelB | Model B name | 
+| 1 | Model A name | 
+| 2 | Model B name | 
