@@ -7,29 +7,44 @@
    http://www.liquibase.org/xml/ns/dbchangelog
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <changeSet author="adidas" id="base-db">
-        <createTable catalogName="shoe"
-                tableName="models">
-            <column name="modelId" type="varchar(255)"/>
-            <column name="modelName" type="varchar(255)"/>
-        </createTable>
-
-         <createTable catalogName="shoe"
-                        tableName="shoes">
-                    <column name="shoeId" type="varchar(255)"/>
-                    <column name="modelId" type="varchar(255)"/>
-                    <column name="shoeColor" type="varchar(255)"/>
-                    <column name="shoeSize" type="integer"/>
-          </createTable>
-
-      <insert tableName="models">
-        <column name="modelId" value="modelA"/>
-        <column name="modelName" value="Model A name"/>
-      </insert>
-      <insert tableName="models">
-        <column name="modelId" value="modelB"/>
-        <column name="modelName" value="Model B name"/>
-      </insert>
-    </changeSet>
-
+  <changeSet author="adidas" id="base-db">
+    <createTable catalogName="shoe"
+      tableName="models">
+      <column name="model_id" type="integer">
+        <constraints nullable="false"/>
+      </column>
+      <column name="model_name" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <createTable catalogName="shoe"
+      tableName="shoes">
+      <column name="shoe_id" type="integer">
+        <constraints nullable="false"/>
+      </column>
+      <column name="model_id" type="integer">
+        <constraints nullable="false"/>
+      </column>
+      <column name="shoe_color" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="shoe_size" type="integer">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <addAutoIncrement catalogName="shoe"
+      columnDataType="integer"
+      columnName="shoe_id"
+      incrementBy="1"
+      startWith="100"
+      tableName="shoes"/>
+    <insert tableName="models">
+      <column name="model_id" value="1"/>
+      <column name="model_name" value="Model 1 name"/>
+    </insert>
+    <insert tableName="models">
+      <column name="model_id" value="2"/>
+      <column name="model_name" value="Model 2 name"/>
+    </insert>
+  </changeSet>
 </databaseChangeLog>
