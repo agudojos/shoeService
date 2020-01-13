@@ -13,7 +13,28 @@
       <column name="model_id" type="integer">
         <constraints nullable="false"/>
       </column>
-      <column name="model_name" type="varchar(255)">
+      <column name="created_date" type="long">
+        <constraints nullable="false"/>
+      </column>
+      <column name="last_updated_date" type="long">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <createTable catalogName="shoe"
+      tableName="models_aud">
+      <column name="model_id" type="integer">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_date" type="long">
+        <constraints nullable="false"/>
+      </column>
+      <column name="last_updated_date" type="long">
+        <constraints nullable="false"/>
+      </column>
+      <column name="rev" type="integer">
+        <constraints nullable="false"/>
+      </column>
+      <column name="revtype" type="integer">
         <constraints nullable="false"/>
       </column>
     </createTable>
@@ -31,20 +52,49 @@
       <column name="shoe_size" type="integer">
         <constraints nullable="false"/>
       </column>
+      <column name="rev" type="integer">
+        <constraints nullable="false"/>
+      </column>
+      <column name="revtype" type="integer">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <createTable catalogName="shoe"
+      tableName="shoes_aud">
+      <column name="shoe_id" type="integer">
+        <constraints nullable="false"/>
+      </column>
+      <column name="model_id" type="integer">
+        <constraints nullable="false"/>
+      </column>
+      <column name="shoe_color" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="shoe_size" type="integer">
+        <constraints nullable="false"/>
+      </column>
+      <column name="rev" type="integer">
+        <constraints nullable="false"/>
+      </column>
+      <column name="revtype" type="integer">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <createTable catalogName="shoe"
+      tableName="revinfo">
+      <column name="rev" type="integer">
+        <constraints nullable="false"/>
+      </column>
+      <column name="revtstmp" type="long">
+        <constraints nullable="false"/>
+      </column>
     </createTable>
     <addAutoIncrement catalogName="shoe"
       columnDataType="integer"
-      columnName="shoe_id"
+      columnName="rev"
       incrementBy="1"
-      startWith="100"
-      tableName="shoes"/>
-    <insert tableName="models">
-      <column name="model_id" value="1"/>
-      <column name="model_name" value="Model 1 name"/>
-    </insert>
-    <insert tableName="models">
-      <column name="model_id" value="2"/>
-      <column name="model_name" value="Model 2 name"/>
-    </insert>
+      startWith="1"
+      tableName="revinfo"/>
+
   </changeSet>
 </databaseChangeLog>

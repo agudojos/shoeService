@@ -2,6 +2,7 @@ package com.adidas.shoes.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,10 +19,10 @@ import javax.validation.constraints.NotNull;
 @Setter
 @Entity
 @Table(name = "shoes")
+@Audited
 public class Shoe {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "shoe_id")
   private Long id;
 

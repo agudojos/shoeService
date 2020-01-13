@@ -16,7 +16,27 @@ import java.util.List;
 import com.adidas.shoes.model.Model;
 
 @RunWith(SpringRunner.class)
+@DataJpaTest
+@TestPropertySource(properties = {
+    "spring.test.database.replace=none"
+})
 public class ShoeRepositoryTest {
 
+  @Autowired
+  private TestEntityManager entityManager;
+
+  @Autowired
+  private ShoeRepository shoeRepository;
+
+
+  @Autowired
+  private ModelRepository modelRepository;
+
+  @Test
+  public void test() {
+    List<Model> lst = new ArrayList<>();
+    modelRepository.findAll().iterator().forEachRemaining(lst::add);
+    Assert.assertThat(lst, Matchers.hasSize(2));
+  }
 
 }
