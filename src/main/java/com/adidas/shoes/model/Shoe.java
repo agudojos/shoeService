@@ -2,8 +2,6 @@ package com.adidas.shoes.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.envers.Audited;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,7 +17,6 @@ import javax.validation.constraints.NotNull;
 @Setter
 @Entity
 @Table(name = "shoes")
-@Audited
 public class Shoe {
 
   @Id

@@ -2,11 +2,11 @@ package com.adidas.shoes.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.envers.Audited;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -17,7 +17,6 @@ import javax.persistence.Table;
 @Setter
 @Entity
 @Table(name = "models")
-@Audited
 public class Model {
 
   @Id
@@ -26,11 +25,11 @@ public class Model {
 
   @Column(name = "created_date", nullable = false, updatable = false)
   @CreatedDate
-  private long createdDate;
+  private Date createdDate;
 
   @Column(name = "last_updated_date", nullable = false, updatable = true)
   @LastModifiedDate
-  private long updatedDate;
+  private Date updatedDate;
 
 
 }

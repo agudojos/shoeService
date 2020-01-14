@@ -7,13 +7,13 @@ spring:
     username: sa
     password: sags
   liquibase:
-    enabled: true
+    enabled: false
     user: sa
     password: sags
     change-log: classpath:/db/db.changelog-master.xml
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
       database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
     properties:

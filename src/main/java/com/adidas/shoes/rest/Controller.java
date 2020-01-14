@@ -1,5 +1,10 @@
 package com.adidas.shoes.rest;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
+import org.javers.core.Javers;
+import org.javers.core.metamodel.object.CdoSnapshot;
+import org.javers.repository.jql.QueryBuilder;
+import org.javers.shadow.Shadow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -10,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import com.adidas.shoes.dao.ModelRepository;
 import com.adidas.shoes.dao.ShoeRepository;
@@ -25,8 +33,12 @@ public class Controller {
   @Autowired
   ShoeRepository shoeRepository;
 
+  @Autowired
+  Javers javers;
+
   @RequestMapping(value = "/model", method = RequestMethod.GET)
   public String model() {
+
 
       Model m = new Model();
       m.setId(1l);
@@ -54,8 +66,22 @@ public class Controller {
     return "//shoe";
   }
 
-  public String revision(int revision){
+  @RequestMapping(value = "/modelVersions", method = RequestMethod.GET)
+  public String modelVersions(){
+    QueryBuilder jqlQuery = QueryBuilder.byClass(Model.class);
+    List<CdoSnapshot> snapshots = javers.findSnapshots(jqlQuery.build());
+    return javers.getJsonConverter().toJson(snapshots);
 
   }
+
+
+  @RequestMapping(value = "/shoeVersions", method = RequestMethod.GET)
+  public String shoeVersions(){
+    QueryBuilder jqlQuery = QueryBuilder.byClass(Shoe.class);
+    List<CdoSnapshot> snapshots = javers.findSnapshots(jqlQuery.build());
+    return javers.getJsonConverter().toJson(snapshots);
+
+  }
+
 
 }
